@@ -5,7 +5,7 @@ const app = express();
 
 // Initialize DynamoDB client with environment variables
 const dynamoDb = new DynamoDBClient({
-  region: process.env.AWS_REGION || 'us-west-2',
+  region: process.env.AWS_REGION || 'us-west-1',
   credentials: {
     accessKeyId: process.env.AWS_ACCESS_KEY_ID,
     secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY
@@ -34,7 +34,7 @@ app.get('/api/verify/:permitNumber', async (req, res) => {
     const params = {
       TableName: TABLE_NAME,
       Key: {
-        permitNumber: { S: permitNumber.toUpperCase() }
+        licensePlateTag: { S: permitNumber.toUpperCase() }
       }
     };
 
